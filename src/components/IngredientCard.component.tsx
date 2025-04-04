@@ -51,7 +51,7 @@ const IngredientCard: FC<IProps> = ({
         >{`${data.icon} ${data.label}`}</span>
       </div>
       <span
-        className={`transition-all duration-300 ${
+        className={`transition-all duration-300 whitespace-nowrap ${
           isDarkMode ? "text-white" : "text-black"
         }`}
       >
