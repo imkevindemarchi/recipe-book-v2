@@ -258,10 +258,19 @@ const AdminRecipe: FC = () => {
             if (recipeRes && recipeRes.hasSuccess)
               if (isImageUpdated && formData.image)
                 await Promise.resolve(IMAGES_API.delete(recipeRes.data)).then(
-                  (imageRes: THTTPResponse) => {
-                    if (imageRes && imageRes.hasSuccess)
-                      openPopup(t("recipeSuccessfullyUpdated"), "success");
-                    else openPopup(t("unableRemoveImage"), "error");
+                  async (deletedImageRes: THTTPResponse) => {
+                    if (deletedImageRes && deletedImageRes.hasSuccess) {
+                      await Promise.resolve(
+                        IMAGES_API.add(
+                          formData.id as string,
+                          formData.image as File
+                        )
+                      ).then((imageRes: THTTPResponse) => {
+                        if (imageRes && imageRes.hasSuccess)
+                          openPopup(t("recipeSuccessfullyUpdated"), "success");
+                        else openPopup(t("unableUpdateImage"), "error");
+                      });
+                    } else openPopup(t("unableRemoveImage"), "error");
                   }
                 );
               else openPopup(t("recipeSuccessfullyUpdated"), "success");
