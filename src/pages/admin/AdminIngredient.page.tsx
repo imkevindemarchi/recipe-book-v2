@@ -153,7 +153,7 @@ const AdminIngredient: FC = () => {
       : false;
 
     if (!isFormValid) openPopup(t("invalidData"), "warning");
-    else if (ingredientAlreadyExists)
+    else if (ingredientAlreadyExists && !isEditMode)
       openPopup(t("ingredientAlreadyExists"), "warning");
     else {
       setIsLoading(true);
