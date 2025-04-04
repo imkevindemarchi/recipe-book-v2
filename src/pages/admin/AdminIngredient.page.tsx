@@ -146,7 +146,8 @@ const AdminIngredient: FC = () => {
     const isFormValid: boolean = validateForm();
     const ingredientAlreadyExists: boolean = ingredients?.find(
       (ingredient: TIngredient) =>
-        ingredient.label?.toLowerCase() === formData.label?.toLowerCase()
+        ingredient.label?.toLowerCase().trim() ===
+        formData.label?.toLowerCase().trim()
     )
       ? true
       : false;
