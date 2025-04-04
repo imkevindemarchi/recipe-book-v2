@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, JSX, ReactNode, useState } from "react";
 
 interface IProps {
   children: ReactNode;
@@ -11,7 +11,7 @@ export type TLoaderContext = {
 
 export const LoaderContext = createContext<TLoaderContext | null>(null);
 
-export const LoaderProvider = ({ children }: IProps): ReactNode => {
+export const LoaderProvider = ({ children }: IProps): JSX.Element => {
   const [state, setState] = useState<boolean>(false);
 
   return (

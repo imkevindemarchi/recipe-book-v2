@@ -1,5 +1,6 @@
 import {
   createContext,
+  JSX,
   ReactNode,
   useContext,
   useEffect,
@@ -30,7 +31,7 @@ export type TAuthContext = {
 
 export const AuthContext = createContext<TAuthContext | null>(null);
 
-export const AuthProvider = ({ children }: IProps): ReactNode => {
+export const AuthProvider = ({ children }: IProps): JSX.Element => {
   const [isUserAuthenticated, setIsUserAuthenticated] = useState<boolean>(
     getFromStorage("token") ? true : false
   );

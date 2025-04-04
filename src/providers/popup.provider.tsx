@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, JSX, ReactNode, useState } from "react";
 
 interface IProps {
   children: ReactNode;
@@ -21,7 +21,7 @@ export type TPopupContext = {
 
 export const PopupContext = createContext<TPopupContext | null>(null);
 
-export const PopupProvider = ({ children }: IProps): ReactNode => {
+export const PopupProvider = ({ children }: IProps): JSX.Element => {
   const [state, setState] = useState<IState>({
     message: null,
     type: null,

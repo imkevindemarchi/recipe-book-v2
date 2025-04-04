@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, JSX, ReactNode, useState } from "react";
 
 interface IProps {
   children: ReactNode;
@@ -11,7 +11,7 @@ export type TSidebarContext = {
 
 export const SidebarContext = createContext<TSidebarContext | null>(null);
 
-export const SidebarProvider = ({ children }: IProps): ReactNode => {
+export const SidebarProvider = ({ children }: IProps): JSX.Element => {
   const [state, setState] = useState<boolean>(false);
 
   const isOpen: boolean = state;
