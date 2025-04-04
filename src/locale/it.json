@@ -101,6 +101,7 @@
     "stepN": "Step {{step}}",
     "previousStep": "Step precedente",
     "nextStep": "Step successivo",
-    "ingredientAlreadyExists": "L'ingrediente esiste già"
+    "ingredientAlreadyExists": "L'ingrediente esiste già",
+    "unableUpdateImage": "Impossibile aggiornare l'immagine"
   }
 }

@@ -164,10 +164,19 @@ const AdminCategory: FC = () => {
           if (categoryRes && categoryRes.hasSuccess)
             if (isImageUpdated && formData.image)
               await Promise.resolve(IMAGES_API.delete(categoryRes.data)).then(
-                (imageRes: THTTPResponse) => {
-                  if (imageRes && imageRes.hasSuccess)
-                    openPopup(t("categorySuccessfullyUpdated"), "success");
-                  else openPopup(t("unableRemoveImage"), "error");
+                async (deletedImageRes: THTTPResponse) => {
+                  if (deletedImageRes && deletedImageRes.hasSuccess) {
+                    await Promise.resolve(
+                      IMAGES_API.add(
+                        formData.id as string,
+                        formData.image as File
+                      )
+                    ).then((imageRes: THTTPResponse) => {
+                      if (imageRes && imageRes.hasSuccess)
+                        openPopup(t("categorySuccessfullyUpdated"), "success");
+                      else openPopup(t("unableUpdateImage"), "error");
+                    });
+                  } else openPopup(t("unableRemoveImage"), "error");
                 }
               );
             else openPopup(t("categorySuccessfullyUpdated"), "success");
