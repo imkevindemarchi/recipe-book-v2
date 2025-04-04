@@ -73,6 +73,7 @@ const AdminIngredient: FC = () => {
   ) as TPopupContext;
   const [errors, setErrors] = useState<TErrors>(defaultErrorsState);
   const navigate: NavigateFunction = useNavigate();
+  const [ingredients, setIngredients] = useState<TIngredient[] | null>(null);
 
   const isEditMode: boolean = ingredientId ? true : false;
 
@@ -80,6 +81,13 @@ const AdminIngredient: FC = () => {
 
   async function getData(): Promise<void> {
     setIsLoading(true);
+
+    await Promise.resolve(INGREDIENT_API.getAll()).then(
+      (response: THTTPResponse) => {
+        if (response && response.hasSuccess) setIngredients(response.data);
+        else openPopup(t("unableLoadIngredients"), "error");
+      }
+    );
 
     if (isEditMode)
       await Promise.resolve(INGREDIENT_API.get(ingredientId as string)).then(
@@ -136,8 +144,16 @@ const AdminIngredient: FC = () => {
     event?.preventDefault();
 
     const isFormValid: boolean = validateForm();
+    const ingredientAlreadyExists: boolean = ingredients?.find(
+      (ingredient: TIngredient) =>
+        ingredient.label?.toLowerCase() === formData.label?.toLowerCase()
+    )
+      ? true
+      : false;
 
     if (!isFormValid) openPopup(t("invalidData"), "warning");
+    else if (ingredientAlreadyExists)
+      openPopup(t("ingredientAlreadyExists"), "warning");
     else {
       setIsLoading(true);
 
