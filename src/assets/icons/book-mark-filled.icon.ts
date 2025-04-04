@@ -1,0 +1,1 @@
+export { GoBookmarkFill as BookMarkFilled } from "react-icons/go";

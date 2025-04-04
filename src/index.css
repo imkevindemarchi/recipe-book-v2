@@ -1,0 +1,48 @@
+/* Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+html {
+  overflow-x: hidden !important;
+}
+
+body {
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Calendar */
+.data-\[disabled\=true\]\:transition-none[data-disabled="true"] {
+  opacity: 0.3;
+}
+.shadow-\[0px_20px_20px_0px_rgb\(0_0_0\/0\.05\)\] {
+  box-shadow: none;
+}
+.data-\[selected\=true\]\:shadow-none[data-selected="true"] {
+  color: #ffffff;
+}
+
+@keyframes animateLogo {
+  0% {
+    opacity: 0.1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
