@@ -14,7 +14,6 @@ interface IProps {
 
 const Stepper: FC<IProps> = ({ steps, isDarkMode }) => {
   const { t } = useTranslation();
-  console.log("🚀 ~ steps:", steps);
   const [currentStep, setCurrentStep] = useState<number>(1);
 
   function calculateProgress(): number {
